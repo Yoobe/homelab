@@ -18,17 +18,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        body {
-            background-color: #fdf8ea; 
-            color: #1a1a1a; 
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .markdown-body {
-            font-family: ui-serif, "Sitka Text", "Sitka", "New York", "Iowan Old Style", "Athelas", "Palatino Linotype", "Noto Serif", "Droid Serif", Georgia, serif;
-            color: #1a1a1a;
-            letter-spacing: 0.01em;
-        }
+        body { background-color: #fdf8ea; color: #1a1a1a; font-family: 'Inter', sans-serif; }
+        .markdown-body { font-family: ui-serif, "Sitka Text", "Sitka", "New York", "Iowan Old Style", "Athelas", "Palatino Linotype", "Noto Serif", "Droid Serif", Georgia, serif; color: #1a1a1a; letter-spacing: 0.01em; }
         .markdown-body h1 { font-size: 2.75rem; font-weight: 700; text-align: center; margin-bottom: 1.5em; color: #111; line-height: 1.3;}
         .markdown-body h2 { font-size: 1.8rem; font-weight: 600; margin-top: 2em; margin-bottom: 0.8em; color: #222;}
         .markdown-body h3 { font-size: 1.4rem; font-weight: 600; margin-top: 1.5em; margin-bottom: 0.5em;}
@@ -69,8 +60,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Password</label>
-                        <input type="password" name="password" placeholder="Optional" 
-                            class="w-full bg-[#fdf8ea] border border-[#e5e0d3] rounded-md p-2.5 text-gray-900 focus:outline-none focus:border-slate-500">
+                        <input type="password" name="password" placeholder="Optional" class="w-full bg-[#fdf8ea] border border-[#e5e0d3] rounded-md p-2.5 text-gray-900 focus:outline-none focus:border-slate-500">
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Time Expiration</label>
@@ -107,16 +97,16 @@
             <div class="block bg-white p-6 rounded-xl border {% if paste.is_burned %}border-red-200 bg-red-50 opacity-80{% else %}border-[#e5e0d3] hover:border-slate-400 hover:shadow-md transition duration-200{% endif %}">
                 <div class="flex justify-between items-start mb-3">
                     <h3 class="text-xl font-bold {% if paste.is_burned %}text-red-900 line-through{% else %}text-gray-900{% endif %} truncate" style="font-family: 'Sitka Text', serif;">
-                        <!-- The author can click ALL links (burned or active) -->
                         <a href="/dashboard/{{ paste.id }}" class="hover:underline">{{ paste.title }}</a>
                     </h3>
                     {% if paste.is_burned %}
                     <span class="text-xs font-bold bg-red-100 text-red-700 px-2 py-1 rounded">BURNED</span>
                     {% endif %}
                 </div>
-                <div class="flex space-x-5 text-sm text-gray-500 mb-4">
-                    <span class="flex items-center"><svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> {{ paste.views }} Views</span>
-                    <span class="flex items-center"><svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg> {{ paste.comment_count }} Comments</span>
+                <div class="flex space-x-4 text-sm text-gray-500 mb-4">
+                    <span class="flex items-center"><svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> {{ paste.views }}</span>
+                    <span class="flex items-center"><svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg> {{ paste.comment_count }}</span>
+                    <span class="flex items-center text-slate-500 bg-slate-100 px-2 py-0.5 rounded text-xs ml-auto">Max Read: {{ paste.max_duration_fmt }}</span>
                 </div>
                 <div class="text-xs text-gray-400 space-y-1.5 font-medium border-t border-gray-100 pt-3">
                     <div>Expires: <span class="text-gray-600">{{ paste.expires_at[:10] if paste.expires_at else 'Never' }}</span></div>
@@ -130,34 +120,6 @@
             {% endfor %}
         </div>
 
-        {% elif mode == "burned" %}
-        <!-- Formatted like a novel page, no error boxes -->
-        <div class="mb-16 px-2 mt-32 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-10" style="font-family: 'Sitka Text', serif;">
-                Document Expired
-            </h1>
-            
-            <div class="markdown-body max-w-xl mx-auto">
-                <p>
-                    {% if reason == "not_found" %}
-                    We could not find this document. It may have never existed.
-                    {% elif reason == "time_expired" %}
-                    This document has passed its time expiration limit and the contents have been permanently destroyed.
-                    {% else %}
-                    This document was already opened and is expired. The contents have been permanently destroyed.
-                    {% endif %}
-                </p>
-                
-                <hr>
-                
-                <p style="font-size: 1.1rem; margin-top: 3rem;">
-                    <a href="/" class="text-slate-500 hover:text-slate-800 transition" style="font-family: 'Inter', sans-serif;">
-                        Return to Homepage
-                    </a>
-                </p>
-            </div>
-        </div>
-
         {% elif mode == "auth" %}
         <div class="bg-white p-8 rounded-xl border border-[#e5e0d3] shadow-sm max-w-md mx-auto mt-24">
             <div class="text-center mb-6">
@@ -165,23 +127,29 @@
                 <h2 class="text-2xl font-bold text-gray-900" style="font-family: 'Sitka Text', serif;">Protected Document</h2>
             </div>
             <form hx-post="/{{ paste.id }}/auth" hx-target="#auth-error" class="space-y-5">
-                <input type="password" name="password" placeholder="Enter password to read" required autofocus
-                    class="w-full bg-[#fdf8ea] border border-[#e5e0d3] rounded-md p-3 text-gray-900 focus:outline-none focus:border-slate-500 text-center">
-                <button type="submit" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-medium py-3 px-4 rounded-md transition duration-200">
-                    Unlock and Read
-                </button>
+                <input type="password" name="password" placeholder="Enter password to read" required autofocus class="w-full bg-[#fdf8ea] border border-[#e5e0d3] rounded-md p-3 text-gray-900 focus:outline-none focus:border-slate-500 text-center">
+                <button type="submit" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-medium py-3 px-4 rounded-md transition duration-200">Unlock and Read</button>
                 <div id="auth-error" class="text-center text-sm"></div>
             </form>
+        </div>
+
+        {% elif mode == "burned" %}
+        <div class="mb-16 px-2 mt-32 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-10" style="font-family: 'Sitka Text', serif;">Document Expired</h1>
+            <div class="markdown-body max-w-xl mx-auto">
+                <p>
+                    {% if reason == "not_found" %}We could not find this document. It may have never existed.{% elif reason == "time_expired" %}This document has passed its time expiration limit and the contents have been permanently destroyed.{% else %}This document was already opened and is expired. The contents have been permanently destroyed.{% endif %}
+                </p>
+                <hr>
+                <p style="font-size: 1.1rem; margin-top: 3rem;"><a href="/" class="text-slate-500 hover:text-slate-800 transition" style="font-family: 'Inter', sans-serif;">Return to Homepage</a></p>
+            </div>
         </div>
 
         {% elif mode == "read" %}
         <div class="mb-12 text-center">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4" style="font-family: 'Sitka Text', serif;">{{ paste.title }}</h1>
             <div class="flex justify-center items-center text-sm text-gray-500 space-x-4">
-                <span class="flex items-center">
-                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                    {{ paste.views }} {% if paste.max_views > 0 %}/ {{ paste.max_views }}{% endif %} Views
-                </span>
+                <span class="flex items-center"><svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>{{ paste.views }} {% if paste.max_views > 0 %}/ {{ paste.max_views }}{% endif %} Views</span>
             </div>
         </div>
 
@@ -205,21 +173,62 @@
                 {% endfor %}
             </div>
 
+            {% if not is_author %}
             <div class="bg-white p-6 rounded-xl border border-[#e5e0d3] shadow-sm mt-8">
-                <form hx-post="/{{ paste.id }}/comments" hx-target="#comments-list" hx-swap="beforeend" 
-                      hx-on::after-request="this.reset(); document.getElementById('no-comments')?.remove();">
-                    <textarea name="content" rows="4" required placeholder="Write a thoughtful comment..." 
-                        class="w-full bg-[#fdf8ea] border border-[#e5e0d3] rounded-md p-4 text-gray-900 focus:outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-500 mb-4 resize-y"></textarea>
-                    <div class="flex justify-end">
-                        <button type="submit" class="bg-slate-800 hover:bg-slate-900 text-white font-medium py-2.5 px-6 rounded-md transition duration-200">
-                            Post Comment
-                        </button>
-                    </div>
+                <form hx-post="/{{ paste.id }}/comments" hx-target="#comments-list" hx-swap="beforeend" hx-on::after-request="this.reset(); document.getElementById('no-comments')?.remove();">
+                    <textarea name="content" rows="4" required placeholder="Write a thoughtful comment..." class="w-full bg-[#fdf8ea] border border-[#e5e0d3] rounded-md p-4 text-gray-900 focus:outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-500 mb-4 resize-y"></textarea>
+                    <div class="flex justify-end"><button type="submit" class="bg-slate-800 hover:bg-slate-900 text-white font-medium py-2.5 px-6 rounded-md transition duration-200">Post Comment</button></div>
                 </form>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Author Analytics Table (Only visible from dashboard route) -->
+        {% if is_author and sessions %}
+        <div class="mt-16 pt-10 border-t border-[#e5e0d3]">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6" style="font-family: 'Sitka Text', serif;">Reading Analytics</h3>
+            <div class="bg-white rounded-xl border border-[#e5e0d3] overflow-hidden shadow-sm">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-50 border-b border-[#e5e0d3] text-gray-600">
+                        <tr>
+                            <th class="p-4 font-semibold">Date (UTC)</th>
+                            <th class="p-4 font-semibold">IP Address</th>
+                            <th class="p-4 font-semibold">Device / OS</th>
+                            <th class="p-4 font-semibold text-right">Read Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        {% for s in sessions %}
+                        <tr class="hover:bg-gray-50 transition duration-150">
+                            <td class="p-4 text-gray-500 whitespace-nowrap">{{ s.date_fmt }}</td>
+                            <td class="p-4 font-mono text-xs text-gray-500">{{ s.ip_address }}</td>
+                            <td class="p-4 text-gray-600 font-medium truncate max-w-[200px]" title="{{ s.user_agent }}">{{ s.ua_short }}</td>
+                            <td class="p-4 font-mono font-bold text-slate-800 text-right">{{ s.duration_fmt }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
         {% endif %}
-
+        
+        <!-- Tracking Script (Only injected for actual readers, not the author) -->
+        {% if session_id %}
+        <script>
+            (function() {
+                const sid = "{{ session_id }}";
+                const ping = () => fetch(`/track/heartbeat/${sid}`, { method: 'POST', keepalive: true }).catch(()=>{});
+                // Ping every 15 seconds while reading
+                setInterval(ping, 15000);
+                // Final ping when they close the tab
+                window.addEventListener('visibilitychange', () => {
+                    if (document.visibilityState === 'hidden') { navigator.sendBeacon(`/track/heartbeat/${sid}`); }
+                });
+            })();
+        </script>
+        {% endif %}
+        
+        {% endif %}
     </div>
 </body>
 </html>
